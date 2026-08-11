@@ -8,11 +8,7 @@ app.use((req, res) => {
     const visitorIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
     const paths = req.originalUrl;
     console.log(visitorIp);
-    if(paths.includes('Abbtqp2ycYco6EDv')) {
-        res.redirect(302, redirectUrl);
-    } else {
-        res.redirect(302, `${instaUrl}${paths}`);
-    }
+    res.redirect(302, `${instaUrl}${paths}`);
 })
 
 app.listen(port, () => {
