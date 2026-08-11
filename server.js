@@ -22,6 +22,8 @@ app.use((req, res) => {
         browserName: browser.name
     }
     console.log(info);
+
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private')
     res.redirect(302, `${instaUrl}${paths}`);
 })
 
